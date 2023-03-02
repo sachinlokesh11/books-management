@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Book Management</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Book Management</a>
+        <form class="form-inline" action="{% url 'books:get_books' %}">
+            <input class="form-control mr-sm-2" name="q" type="search" placeholder="Enter Rows No" 
+            aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+      </nav>
+    <div class="container">
+            <table class="table table-striped table-bordered table-responsive" style="table-layout: fixed;word-wrap: break-word;">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Authors</th>
+                        <th scope="col">Isbn13</th>
+                        <th scope="col">Isbn10</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Publisher</th>
+                        <th scope="col">Pubyear</th>
+                        <th scope="col">Subjects</th>
+                        <th scope="col">Lexile</th>
+                        <th scope="col">Pages</th>
+                        <th scope="col">Dimensions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for each in books %}
+                <tr>
+                    <td >{{ each.id }}</td>
+                    <td>{{ each.title }}</td>
+                    <td>{{ each.author }}</td>
+                    <td >{{ each.authors }}</td>
+                    <td>{{ each.isbn13 }}</td>
+                    <td>{{ each.isbn10 }}</td>
+                    <td>{{ each.price }}</td>
+                    <td>{{ each.publisher }}</td>
+                    <td>{{ each.pubyear }}</td>
+                    <td colspan="2">{{ each.subjects }}</td>
+                    <td>{{ each.lexile }}</td>
+                    <td>{{ each.pages }}</td>
+                    <td>{{ each.dimensions }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            </table>
+        </div>
+</body>
+</html>
